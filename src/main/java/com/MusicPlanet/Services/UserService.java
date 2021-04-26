@@ -1,38 +1,39 @@
 package com.MusicPlanet.Services;
 
-import com.MusicPlanet.Repository.UserRepository;
+import com.MusicPlanet.Repository.UserDalJPA;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.MusicPlanet.Entities.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDalJPA userRepository;
 
     //Create
-    public User createUser(User user){
-        return userRepository.save(user);
+    public void createUser(User user){
+        userRepository.addUser(user);
     }
 
     //READ
     public List<User> getAllUsers(){
-        return userRepository.findAll();
+        return userRepository.getAllUsers();
     }
 
     public User getUserById(int id){
-        return userRepository.findById(id).orElse(null);
+        //return userRepository.getUserById(id).orElse(null);
+        return userRepository.getUserById(id);
     }
 
     //UPDATE
-    public User updateUser(User user){
+    public void updateUser(User user){
         //Get existing user
-        User existingUser=userRepository.findById(user.getId()).orElse(null);
+        //User existingUser=userRepository.getUserById(user.getId()).orElse(null);
+        User existingUser=userRepository.getUserById(user.getId());
 
         //Change existing User
         existingUser.setEmail(user.getEmail());
@@ -40,12 +41,12 @@ public class UserService {
         existingUser.setPassword(user.getPassword());
 
         //Save changes
-        return userRepository.save(existingUser);
+        userRepository.addUser(existingUser);
     }
 
     //DELETE
     public String deleteUser(int id){
-        userRepository.deleteById(id);
+        userRepository.deleteUser(id);
         return "User Removed";
     }
 }

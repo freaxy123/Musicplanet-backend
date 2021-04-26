@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     //READ
-    @GetMapping("all")
+    @GetMapping
     public ResponseEntity<Object> getAllUsers() {
         try{
             return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
@@ -29,7 +29,6 @@ public class UserController {
 
     @GetMapping("user")
     public ResponseEntity<Object> getUserById(@RequestParam Integer id) {
-        System.out.println("test");
         try{
             return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
         }
@@ -42,7 +41,8 @@ public class UserController {
     @PostMapping
     public ResponseEntity createUser(@RequestBody User user){
         try{
-            return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
+            userService.createUser(user);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (Exception e){
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,7 +53,8 @@ public class UserController {
     @PutMapping
     public ResponseEntity<Object> updateUser(@RequestBody User user){
         try{
-            return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+            userService.updateUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
