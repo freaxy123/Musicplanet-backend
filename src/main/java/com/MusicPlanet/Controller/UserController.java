@@ -17,6 +17,7 @@ public class UserController {
     private UserService userService;
 
     //READ
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<Object> getAllUsers() {
         try{
@@ -27,8 +28,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("user")
-    public ResponseEntity<Object> getUserById(@RequestParam Integer id) {
+    @CrossOrigin
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getUserById(@PathVariable("id") Integer id) {
         try{
             return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
         }
@@ -38,6 +40,7 @@ public class UserController {
     }
 
     //CREATE
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createUser(@RequestBody User user){
         try{
@@ -50,6 +53,7 @@ public class UserController {
     }
 
     //UPDATE
+    @CrossOrigin
     @PutMapping
     public ResponseEntity<Object> updateUser(@RequestBody User user){
         try{
@@ -62,6 +66,7 @@ public class UserController {
     }
 
     //DELETE
+    @CrossOrigin
     @DeleteMapping
     public ResponseEntity<Object> deleteUser(@RequestParam Integer id){
         try{
