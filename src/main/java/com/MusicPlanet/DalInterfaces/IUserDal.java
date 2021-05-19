@@ -2,10 +2,15 @@ package com.MusicPlanet.DalInterfaces;
 
 import com.MusicPlanet.Entities.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserDal {
-    User getUserById (int id);
-    List<User> getAllUsers();
-    void addUser(User user);
-    void deleteUser(int id);
+    Optional<User> getById (int id);
+    List<User> getAll();
+    void save(User user);
+    void delete(int id);
+
+    Optional<User> getByEmail(String email);
+    Optional<User> getByUsername(String username);
+    int enable(String email);
 }

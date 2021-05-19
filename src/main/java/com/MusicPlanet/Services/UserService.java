@@ -1,52 +1,75 @@
 package com.MusicPlanet.Services;
 
-import com.MusicPlanet.Repository.UserDalJPA;
+import com.MusicPlanet.Entities.ConfirmationToken;
+import com.MusicPlanet.Repository.UserRepository;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.MusicPlanet.Entities.User;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
-public class UserService {
+@AllArgsConstructor
+public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserDalJPA userRepository;
+    private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 
-    //Create
-    public void createUser(User user){
-        userRepository.addUser(user);
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if(userRepository.getByUsername(username).isEmpty()){
+            return userRepository.getByEmail(username)
+                    .orElseThrow(() ->
+                            new UsernameNotFoundException(
+                                    String.format(USER_NOT_FOUND_MSG, username)));
+        }
+        else{
+            return userRepository.getByUsername(username)
+                    .orElseThrow(() ->
+                            new UsernameNotFoundException(
+                                    String.format(USER_NOT_FOUND_MSG, username)));
+        }
     }
 
-    //READ
-    public List<User> getAllUsers(){
-        return userRepository.getAllUsers();
+    public String register(User user) {
+        boolean userExists = userRepository.getByEmail(user.getEmail()).isPresent();
+
+        if (userExists) {
+            throw new IllegalStateException("email already taken");
+        }
+
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+
+        userRepository.save(user);
+
+        String token = UUID.randomUUID().toString();
+
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                user
+        );
+
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+
+        return token;
     }
 
-    public User getUserById(int id){
-        //return userRepository.getUserById(id).orElse(null);
-        return userRepository.getUserById(id);
-    }
-
-    //UPDATE
-    public void updateUser(User user){
-        //Get existing user
-        //User existingUser=userRepository.getUserById(user.getId()).orElse(null);
-        User existingUser=userRepository.getUserById(user.getId());
-
-        //Change existing User
-        existingUser.setEmail(user.getEmail());
-        existingUser.setUsername(user.getUsername());
-        existingUser.setPassword(user.getPassword());
-
-        //Save changes
-        userRepository.addUser(existingUser);
-    }
-
-    //DELETE
-    public String deleteUser(int id){
-        userRepository.deleteUser(id);
-        return "User Removed";
+    public int enableUser(String email) {
+        return userRepository.enable(email);
     }
 }
