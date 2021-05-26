@@ -6,6 +6,7 @@ build:
   stage: build
   script:
     - ./gradlew assemble
+  timeout: 3 hours 30 minutes
 
 test:
   stage: test
@@ -13,3 +14,4 @@ test:
     - ./gradlew test
   dependencies:
     - build
+  timeout: 3h 30m
