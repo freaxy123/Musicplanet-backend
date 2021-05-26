@@ -1,7 +1,7 @@
 package com.MusicPlanet.Services;
 
 import com.MusicPlanet.Entities.ConfirmationToken;
-import com.MusicPlanet.Entities.RegistrationUser;
+import com.MusicPlanet.Entities.UserRegistrationRequest;
 import com.MusicPlanet.Entities.User;
 import com.MusicPlanet.Entities.UserRole;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ public class UserRegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final IEmailService emailSender;
 
-    public String register(RegistrationUser registrationUser) {
-        boolean isValidEmail = emailValidator.test(registrationUser.getEmail());
+    public String register(UserRegistrationRequest userRegistrationRequest) {
+        boolean isValidEmail = emailValidator.test(userRegistrationRequest.getEmail());
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
@@ -28,15 +28,15 @@ public class UserRegistrationService {
 
         String token = userService.register(
                 new User(
-                        registrationUser.getUsername(),
-                        registrationUser.getEmail(),
-                        registrationUser.getPassword(),
+                        userRegistrationRequest.getUsername(),
+                        userRegistrationRequest.getEmail(),
+                        userRegistrationRequest.getPassword(),
                         UserRole.USER
                 )
         );
 
         String link = "http://localhost:8080/register/confirm?token=" + token;
-        emailSender.send(registrationUser.getEmail(), buildEmail(registrationUser.getUsername(), link));
+        emailSender.send(userRegistrationRequest.getEmail(), buildEmail(userRegistrationRequest.getUsername(), link));
 
         return token;
     }

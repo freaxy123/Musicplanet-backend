@@ -1,6 +1,6 @@
 package com.MusicPlanet.Controller;
 
-import com.MusicPlanet.Entities.RegistrationUser;
+import com.MusicPlanet.Entities.UserRegistrationRequest;
 import com.MusicPlanet.Services.UserRegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class UserRegistrationController {
 
     @CrossOrigin
     @PostMapping
-    public String register(@RequestBody RegistrationUser request) {
+    public String register(@RequestBody UserRegistrationRequest request) {
         return registrationService.register(request);
     }
 
