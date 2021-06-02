@@ -1,7 +1,7 @@
 package com.MusicPlanet.Controller;
 
-import com.MusicPlanet.Entities.Song;
-import com.MusicPlanet.Services.SongService;
+import com.MusicPlanet.Entities.Artist;;
+import com.MusicPlanet.Services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,24 +12,22 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/songs")
-public class SongController {
+@RequestMapping("/artists")
+public class ArtistController {
+
     @Autowired
-    private SongService songService;
+    private ArtistService artistService;
 
     @CrossOrigin
     @GetMapping("")
-    public List<Song> getAll(){
-        System.out.println("TEST");
-        return songService.getAll();
-    }
+    public List<Artist> getAll(){return artistService.getAll();}
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Song>> get(@PathVariable Long id){
+    public ResponseEntity<Optional<Artist>> get(@PathVariable Long id){
         try{
-            Optional<Song> song = songService.getById(id);
-            return new ResponseEntity<>(song, HttpStatus.OK);
+            Optional<Artist> artist = artistService.getById(id);
+            return new ResponseEntity<>(artist, HttpStatus.OK);
         } catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -37,29 +35,29 @@ public class SongController {
 
 
     @CrossOrigin
-    @GetMapping("/title/{title}")
-    public List<Song> getByTitle(@PathVariable("title") String title) {
-        return songService.GetByTitle(title);
+    @GetMapping("/name/{name}")
+    public List<Artist> getByName(@PathVariable("name") String name) {
+        return artistService.GetByName(name);
     }
 
     @CrossOrigin
     @PostMapping("/")
-    public void add(@RequestBody Song song){
-        songService.save(song);
+    public void add(@RequestBody Artist artist){
+        artistService.save(artist);
     }
 
     @CrossOrigin
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Song song, @PathVariable Long id){
+    public ResponseEntity<?> update(@RequestBody Artist artist, @PathVariable Long id){
         try{
-            Optional<Song> existSong = songService.getById(id);
+            Optional<Artist> existArtist = artistService.getById(id);
 
-            if(!existSong.isPresent()){
+            if(!existArtist.isPresent()){
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
-            song.setId(id);
-            songService.save(song);
+            artist.setId(id);
+            artistService.save(artist);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -68,14 +66,14 @@ public class SongController {
     @CrossOrigin
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
-        songService.delete(id);
+        artistService.delete(id);
     }
 
     @CrossOrigin
     @DeleteMapping("/")
     public ResponseEntity<HttpStatus> deleteAll() {
         try {
-            songService.deleteAll();
+            artistService.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -17,10 +17,14 @@ import java.util.List;
 public class Artist {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    public String Name;
+    public String name;
 
+    /*
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "song_id")
     private List<Song> songs;
+
+     */
 }

@@ -2,6 +2,7 @@ package com.MusicPlanet.Services;
 
 import com.MusicPlanet.Entities.Song;
 import com.MusicPlanet.Repository.Song.SongRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class SongService {
 
     @Autowired
