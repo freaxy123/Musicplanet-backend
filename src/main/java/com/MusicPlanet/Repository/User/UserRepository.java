@@ -1,6 +1,7 @@
-package com.MusicPlanet.Repository;
+package com.MusicPlanet.Repository.User;
 
 import com.MusicPlanet.DalInterfaces.IUserDal;
+import com.MusicPlanet.Repository.User.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.MusicPlanet.Entities.User.User;

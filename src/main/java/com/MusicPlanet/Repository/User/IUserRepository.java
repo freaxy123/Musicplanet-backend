@@ -1,4 +1,4 @@
-package com.MusicPlanet.Repository;
+package com.MusicPlanet.Repository.User;
 
 import com.MusicPlanet.Entities.User.User;
 

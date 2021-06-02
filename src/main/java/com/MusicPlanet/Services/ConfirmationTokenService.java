@@ -1,7 +1,7 @@
 package com.MusicPlanet.Services;
 
 import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
-import com.MusicPlanet.Repository.ConfirmationTokenRepository;
+import com.MusicPlanet.Repository.ConfirmationToken.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

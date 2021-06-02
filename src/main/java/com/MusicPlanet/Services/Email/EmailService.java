@@ -1,4 +1,4 @@
-package com.MusicPlanet.Services;
+package com.MusicPlanet.Services.Email;
 
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

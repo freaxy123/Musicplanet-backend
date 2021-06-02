@@ -1,7 +1,8 @@
-package com.MusicPlanet.Repository;
+package com.MusicPlanet.Repository.ConfirmationToken;
 
 import com.MusicPlanet.DalInterfaces.IConfirmationTokenDal;
 import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
+import com.MusicPlanet.Repository.ConfirmationToken.IConfirmationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

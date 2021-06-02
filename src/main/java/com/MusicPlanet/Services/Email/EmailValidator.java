@@ -1,4 +1,4 @@
-package com.MusicPlanet.Services;
+package com.MusicPlanet.Services.Email;
 
 import org.springframework.stereotype.Service;
 

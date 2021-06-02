@@ -17,6 +17,7 @@ import java.util.List;
 public class Song {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String title;
 }

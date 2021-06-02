@@ -1,7 +1,7 @@
 package com.MusicPlanet.Services;
 
 import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
-import com.MusicPlanet.Repository.UserRepository;
+import com.MusicPlanet.Repository.User.UserRepository;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

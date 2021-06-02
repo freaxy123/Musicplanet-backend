@@ -1,4 +1,4 @@
-package com.MusicPlanet.Repository;
+package com.MusicPlanet.Repository.ConfirmationToken;
 
 import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;

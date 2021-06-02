@@ -4,6 +4,8 @@ import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
 import com.MusicPlanet.Entities.Authentication.UserRegistrationRequest;
 import com.MusicPlanet.Entities.User.User;
 import com.MusicPlanet.Entities.User.UserRole;
+import com.MusicPlanet.Services.Email.EmailValidator;
+import com.MusicPlanet.Services.Email.IEmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
