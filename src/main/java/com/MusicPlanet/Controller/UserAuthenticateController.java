@@ -1,7 +1,8 @@
 package com.MusicPlanet.Controller;
 
-import com.MusicPlanet.Entities.UserAuthenticationRequest;
-import com.MusicPlanet.Entities.UserAuthenticationResponse;
+
+import com.MusicPlanet.Entities.Authentication.UserAuthenticationRequest;
+import com.MusicPlanet.Entities.Authentication.UserAuthenticationResponse;
 import com.MusicPlanet.Services.UserService;
 import com.MusicPlanet.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,19 +1,17 @@
 package com.MusicPlanet.Services;
 
-import com.MusicPlanet.Entities.ConfirmationToken;
+import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
 import com.MusicPlanet.Repository.UserRepository;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.MusicPlanet.Entities.User;
+import com.MusicPlanet.Entities.User.User;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Service

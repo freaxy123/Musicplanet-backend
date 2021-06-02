@@ -1,6 +1,6 @@
 package com.MusicPlanet.Repository;
 
-import com.MusicPlanet.Entities.ConfirmationToken;
+import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

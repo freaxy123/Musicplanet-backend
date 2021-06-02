@@ -1,6 +1,6 @@
 package com.MusicPlanet.DalInterfaces;
 
-import com.MusicPlanet.Entities.ConfirmationToken;
+import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

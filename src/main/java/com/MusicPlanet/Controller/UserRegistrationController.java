@@ -1,6 +1,6 @@
 package com.MusicPlanet.Controller;
 
-import com.MusicPlanet.Entities.UserRegistrationRequest;
+import com.MusicPlanet.Entities.Authentication.UserRegistrationRequest;
 import com.MusicPlanet.Services.UserRegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

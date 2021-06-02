@@ -1,9 +1,9 @@
 package com.MusicPlanet.Services;
 
-import com.MusicPlanet.Entities.ConfirmationToken;
-import com.MusicPlanet.Entities.UserRegistrationRequest;
-import com.MusicPlanet.Entities.User;
-import com.MusicPlanet.Entities.UserRole;
+import com.MusicPlanet.Entities.Authentication.ConfirmationToken;
+import com.MusicPlanet.Entities.Authentication.UserRegistrationRequest;
+import com.MusicPlanet.Entities.User.User;
+import com.MusicPlanet.Entities.User.UserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

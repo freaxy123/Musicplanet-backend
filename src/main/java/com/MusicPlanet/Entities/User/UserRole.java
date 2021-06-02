@@ -1,4 +1,4 @@
-package com.MusicPlanet.Entities;
+package com.MusicPlanet.Entities.User;
 
 public enum UserRole {
     USER,

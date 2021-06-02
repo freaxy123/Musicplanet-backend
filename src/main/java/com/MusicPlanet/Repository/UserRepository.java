@@ -2,9 +2,8 @@ package com.MusicPlanet.Repository;
 
 import com.MusicPlanet.DalInterfaces.IUserDal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.MusicPlanet.Entities.User;
+import com.MusicPlanet.Entities.User.User;
 import java.util.List;
 import java.util.Optional;
 

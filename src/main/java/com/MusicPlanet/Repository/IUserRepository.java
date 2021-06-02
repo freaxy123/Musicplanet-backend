@@ -1,6 +1,6 @@
 package com.MusicPlanet.Repository;
 
-import com.MusicPlanet.Entities.User;
+import com.MusicPlanet.Entities.User.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

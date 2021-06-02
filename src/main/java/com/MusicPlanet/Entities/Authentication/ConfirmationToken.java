@@ -1,5 +1,6 @@
-package com.MusicPlanet.Entities;
+package com.MusicPlanet.Entities.Authentication;
 
+import com.MusicPlanet.Entities.User.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

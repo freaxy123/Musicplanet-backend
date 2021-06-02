@@ -1,4 +1,4 @@
-package com.MusicPlanet.Entities;
+package com.MusicPlanet.Entities.Authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

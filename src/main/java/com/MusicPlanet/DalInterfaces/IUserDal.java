@@ -1,6 +1,6 @@
 package com.MusicPlanet.DalInterfaces;
 
-import com.MusicPlanet.Entities.User;
+import com.MusicPlanet.Entities.User.User;
 import java.util.List;
 import java.util.Optional;
 
