@@ -21,10 +21,8 @@ public class Artist {
     private Long id;
     public String name;
 
-    /*
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "song_id")
     private List<Song> songs;
-
-     */
 }

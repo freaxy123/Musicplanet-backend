@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/register", "/register/*", "/authenticate", "/artists", "/artists/*").permitAll()
+                .antMatchers( "/register", "/register/*", "/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.logout()
                 //.permitAll();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.cors();
     }
 
     @Override
