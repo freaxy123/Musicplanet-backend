@@ -13,16 +13,15 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name="songs")
-public class Song {
+@Table(name="playlists")
+public class Playlist {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String title;
+    public String name;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL})
-    @JoinColumn(name = "artist_id")
-    private List<Artist> artists;
-
+    @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+    @JoinColumn(name = "song_id")
+    private List<Song> songs;
 }

@@ -1,5 +1,6 @@
 package com.MusicPlanet.Repository.Song;
 
+import com.MusicPlanet.Entities.Artist;
 import com.MusicPlanet.Entities.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,6 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface ISongRepository extends JpaRepository<Song, Long> {
     List<Song> findSongByTitleContaining(String title);
+    List<Song> findSongsByArtists_NameContaining(String name);
+    List<Song> findSongsByArtists_Id(Long id);
 }

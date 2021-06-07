@@ -16,13 +16,16 @@ import java.util.List;
 @Table(name="artists")
 public class Artist {
 
+    @SequenceGenerator(
+            name = "artist_sequence",
+            sequenceName = "artist_sequence",
+            allocationSize = 1
+    )
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "artist_sequence"
+    )
     private Long id;
     public String name;
-
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "song_id")
-    private List<Song> songs;
 }
