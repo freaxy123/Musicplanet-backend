@@ -21,7 +21,9 @@ public class Playlist {
     private Long id;
     public String name;
 
-    @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+    /*
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "song_id")
     private List<Song> songs;
+    */
 }
