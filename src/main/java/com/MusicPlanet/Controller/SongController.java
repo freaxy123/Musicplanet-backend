@@ -1,5 +1,6 @@
 package com.MusicPlanet.Controller;
 
+import com.MusicPlanet.Entities.Artist;
 import com.MusicPlanet.Entities.Song;
 import com.MusicPlanet.Services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ public class SongController {
     @CrossOrigin
     @GetMapping("")
     public List<Song> getAll(){
-        System.out.println("TEST");
         return songService.getAll();
     }
 
@@ -36,11 +36,22 @@ public class SongController {
         }
     }
 
-
     @CrossOrigin
     @GetMapping("/title/{title}")
     public List<Song> getByTitle(@PathVariable("title") String title) {
         return songService.GetByTitle(title);
+    }
+
+    @CrossOrigin
+    @GetMapping("/artist/name/{name}")
+    public List<Song> getByArtistName(@PathVariable("name") String name) {
+        return songService.GetByArtistName(name);
+    }
+
+    @CrossOrigin
+    @GetMapping("/artist/id/{id}")
+    public List<Song> getByArtistId(@PathVariable("id") Long id) {
+        return songService.GetByArtistId(id);
     }
 
     @CrossOrigin

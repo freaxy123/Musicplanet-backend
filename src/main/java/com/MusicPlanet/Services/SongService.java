@@ -1,5 +1,6 @@
 package com.MusicPlanet.Services;
 
+import com.MusicPlanet.Entities.Artist;
 import com.MusicPlanet.Entities.Song;
 import com.MusicPlanet.Repository.Song.SongRepository;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,8 @@ public class SongService {
     public void save(Song song){songRepository.save(song);}
     public Optional<Song> getById(Long id){return songRepository.findById(id);}
     public List<Song> GetByTitle(String title){return songRepository.findByTitleContaining(title);}
+    public List<Song> GetByArtistName(String name){ return songRepository.findByArtistName(name);}
+    public List<Song> GetByArtistId(Long id){ return songRepository.findByArtistId(id);}
     public void delete(Long id){songRepository.deleteById(id);}
     public void deleteAll(){songRepository.deleteAll();}
 }

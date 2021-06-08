@@ -13,19 +13,15 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name="artists")
-public class Artist {
+@Table(name="playlists")
+public class Playlist {
 
-    @SequenceGenerator(
-            name = "artist_sequence",
-            sequenceName = "artist_sequence",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "artist_sequence"
-    )
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     public String name;
+
+    @ManyToMany()
+    @JoinColumn(name = "song_id")
+    private List<Song> songs;
 }
