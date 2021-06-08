@@ -36,7 +36,6 @@ public class PlaylistController {
         }
     }
 
-
     @CrossOrigin
     @GetMapping("/name/{name}")
     public List<Playlist> getByName(@PathVariable("name") String name) {

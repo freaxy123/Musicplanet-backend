@@ -21,9 +21,7 @@ public class Playlist {
     private Long id;
     public String name;
 
-    /*
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany()
     @JoinColumn(name = "song_id")
     private List<Song> songs;
-    */
 }
