@@ -1,5 +1,7 @@
 package com.MusicPlanet.Entities;
 
+import com.MusicPlanet.DTO.PlaylistDTO;
+import com.MusicPlanet.DTO.SongDTO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +21,17 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    public String name;
+    private String name;
 
     @ManyToMany()
     @JoinColumn(name = "song_id")
     private List<Song> songs;
+
+    public Playlist(PlaylistDTO playlistDTO){
+        this.id = playlistDTO.getId();
+        this.name = playlistDTO.getName();
+        for (SongDTO songDTO : playlistDTO.getSongs()) {
+            this.songs.add(new Song(songDTO));
+        }
+    }
 }

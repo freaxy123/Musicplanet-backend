@@ -1,5 +1,6 @@
 package com.MusicPlanet.Controller;
 
+import com.MusicPlanet.DTO.PlaylistDTO;
 import com.MusicPlanet.Entities.Playlist;
 import com.MusicPlanet.Services.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,9 @@ public class PlaylistController {
 
     @CrossOrigin
     @PostMapping("/")
-    public void add(@RequestBody Playlist playlist){
-        playlistService.save(playlist);
+    public void add(@RequestBody PlaylistDTO playlistDTO){
+        //Playlist playlist = new Playlist(playlistDTO);
+        //playlistService.save(playlist);
     }
 
     @CrossOrigin

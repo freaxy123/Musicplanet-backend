@@ -1,5 +1,6 @@
 package com.MusicPlanet.Entities;
 
+import com.MusicPlanet.DTO.ArtistDTO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,9 @@ public class Artist {
     )
     private Long id;
     public String name;
+
+    public Artist(ArtistDTO artistDTO) {
+        this.id = artistDTO.getId();
+        this.name = artistDTO.getName();
+    }
 }

@@ -1,5 +1,6 @@
 package com.MusicPlanet.Controller;
 
+import com.MusicPlanet.DTO.ArtistDTO;
 import com.MusicPlanet.Entities.Artist;;
 import com.MusicPlanet.Services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class ArtistController {
 
     @CrossOrigin
     @PostMapping("/")
-    public void add(@RequestBody Artist artist){
+    public void add(@RequestBody ArtistDTO artistDTO){
+        Artist artist = new Artist(artistDTO);
         artistService.save(artist);
     }
 

@@ -1,11 +1,14 @@
 package com.MusicPlanet.Entities;
 
+import com.MusicPlanet.DTO.ArtistDTO;
+import com.MusicPlanet.DTO.SongDTO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -35,4 +38,14 @@ public class Song {
     @JoinColumn(name = "artist_id")
     private List<Artist> artists;
 
+    public Song(SongDTO songDTO) {
+        this.id = songDTO.getId();
+        this.title = songDTO.getTitle();
+
+        this.artists = new ArrayList<Artist>();
+
+        for (ArtistDTO artistDTO: songDTO.getArtists()) {
+            this.artists.add(new Artist(artistDTO));
+        }
+    }
 }

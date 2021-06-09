@@ -1,5 +1,6 @@
 package com.MusicPlanet.Controller;
 
+import com.MusicPlanet.DTO.SongDTO;
 import com.MusicPlanet.Entities.Artist;
 import com.MusicPlanet.Entities.Song;
 import com.MusicPlanet.Services.SongService;
@@ -56,7 +57,8 @@ public class SongController {
 
     @CrossOrigin
     @PostMapping("/")
-    public void add(@RequestBody Song song){
+    public void add(@RequestBody SongDTO songDTO){
+        Song song = new Song(songDTO);
         songService.save(song);
     }
 
