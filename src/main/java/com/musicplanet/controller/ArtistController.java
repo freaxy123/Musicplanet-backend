@@ -51,7 +51,7 @@ public class ArtistController {
 
     @CrossOrigin
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody Artist artist, @PathVariable Long id){
+    public ResponseEntity<HttpStatus> update(@RequestBody ArtistDTO artistDTO, @PathVariable Long id){
         try{
             Optional<Artist> existArtist = artistService.getById(id);
 
@@ -59,7 +59,8 @@ public class ArtistController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
-            artist.setId(id);
+            artistDTO.setId(id);
+            Artist artist = new Artist(artistDTO);
             artistService.save(artist);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e){

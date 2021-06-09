@@ -42,7 +42,7 @@ public class Song {
         this.id = songDTO.getId();
         this.title = songDTO.getTitle();
 
-        this.artists = new ArrayList<Artist>();
+        this.artists = new ArrayList<>();
 
         for (ArtistDTO artistDTO: songDTO.getArtists()) {
             this.artists.add(new Artist(artistDTO));
