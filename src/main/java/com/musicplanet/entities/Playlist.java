@@ -32,7 +32,7 @@ public class Playlist {
         this.id = playlistDTO.getId();
         this.name = playlistDTO.getName();
 
-        this.songs = new ArrayList<>();
+        this.songs = new ArrayList<Song>();
         for (SongDTO songDTO : playlistDTO.getSongs()) {
             this.songs.add(new Song(songDTO));
         }
