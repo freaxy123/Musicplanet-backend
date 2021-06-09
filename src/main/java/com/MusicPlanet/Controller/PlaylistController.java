@@ -46,13 +46,13 @@ public class PlaylistController {
     @CrossOrigin
     @PostMapping("/")
     public void add(@RequestBody PlaylistDTO playlistDTO){
-        //Playlist playlist = new Playlist(playlistDTO);
-        //playlistService.save(playlist);
+        Playlist playlist = new Playlist(playlistDTO);
+        playlistService.save(playlist);
     }
 
     @CrossOrigin
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Playlist playlist, @PathVariable Long id){
+    public ResponseEntity<?> update(@RequestBody PlaylistDTO playlistDTO, @PathVariable Long id){
         try{
             Optional<Playlist> existPlaylist = playlistService.getById(id);
 
@@ -60,7 +60,8 @@ public class PlaylistController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
-            playlist.setId(id);
+            playlistDTO.setId(id);
+            Playlist playlist = new Playlist(playlistDTO);
             playlistService.save(playlist);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e){

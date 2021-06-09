@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -30,6 +31,7 @@ public class Playlist {
     public Playlist(PlaylistDTO playlistDTO){
         this.id = playlistDTO.getId();
         this.name = playlistDTO.getName();
+        this.songs = new ArrayList<Song>();
         for (SongDTO songDTO : playlistDTO.getSongs()) {
             this.songs.add(new Song(songDTO));
         }

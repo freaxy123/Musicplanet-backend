@@ -64,7 +64,7 @@ public class SongController {
 
     @CrossOrigin
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Song song, @PathVariable Long id){
+    public ResponseEntity<HttpStatus> update(@RequestBody SongDTO songDTO, @PathVariable Long id){
         try{
             Optional<Song> existSong = songService.getById(id);
 
@@ -72,7 +72,8 @@ public class SongController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
-            song.setId(id);
+            songDTO.setId(id);
+            Song song = new Song(songDTO);
             songService.save(song);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e){
