@@ -1,6 +1,8 @@
 package com.musicplanet.services;
 
 import com.musicplanet.entities.Authentication.ConfirmationToken;
+import com.musicplanet.entities.Song;
+import com.musicplanet.entities.User.Role;
 import com.musicplanet.repository.User.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.musicplanet.entities.User.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -69,5 +73,11 @@ public class UserService implements UserDetailsService {
 
     public int enableUser(String email) {
         return userRepository.enable(email);
+    }
+
+    public void giveUserRole(long id, Role role){
+       User user = userRepository.getById(id).get();
+       user.getRoles().add(role);
+       userRepository.save(user);
     }
 }

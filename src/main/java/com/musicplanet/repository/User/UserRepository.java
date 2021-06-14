@@ -14,7 +14,7 @@ public class UserRepository implements IUserDal {
     IUserRepository repo;
 
     @Override
-    public Optional<User> getById(int id) {
+    public Optional<User> getById(Long id) {
         return repo.findById(id);
     }
 
@@ -29,7 +29,7 @@ public class UserRepository implements IUserDal {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         repo.delete(repo.findById(id).get());
     }
 

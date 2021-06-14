@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private final UserService userService;
 
-    @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -40,16 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/register", "/register/*", "/authenticate").permitAll()
+                .antMatchers("/artists/", "/artists/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
+                .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
+                .antMatchers("/delete/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                //.and()
-                //.formLogin()
-                //.loginPage("/login")
-                //.permitAll()
-                //.and()
-                //.logout()
-                //.permitAll();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.cors();
     }

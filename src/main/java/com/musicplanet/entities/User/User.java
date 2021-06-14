@@ -1,16 +1,19 @@
 package com.musicplanet.entities.User;
 
+import com.musicplanet.dto.ArtistDTO;
+import com.musicplanet.entities.Artist;
+import com.musicplanet.repository.Role.RoleRepository;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 @Getter
 @Setter
@@ -19,7 +22,6 @@ import java.util.Collections;
 @Entity
 @Table(name="users")
 public class User implements UserDetails {
-
 
     @SequenceGenerator(
             name = "user_sequence",
@@ -35,25 +37,52 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "role_id")
+    private Collection<Role> roles = new LinkedHashSet<>();
 
     public User(String username,
                 String email,
                 String password,
-                UserRole userRole) {
+                Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
+        System.out.println("Username " + username);
+        System.out.println("Email " + email);
+        System.out.println("Password " + password);
+        System.out.println("Role " + role.getName());
+        this.roles.add(role);
     }
+
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        /*
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
         return Collections.singletonList(authority);
+
+         */
+        Collection<Role> roles = this.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : roles) {
+            System.out.println("AUTHORITY: " + role.getName());
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
+        return authorities;
     }
 
     @Override

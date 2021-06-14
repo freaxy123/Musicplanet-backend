@@ -4,6 +4,7 @@ import com.musicplanet.entities.Authentication.ConfirmationToken;
 import com.musicplanet.entities.Authentication.UserRegistrationRequest;
 import com.musicplanet.entities.User.User;
 import com.musicplanet.entities.User.UserRole;
+import com.musicplanet.repository.Role.RoleRepository;
 import com.musicplanet.services.Email.EmailValidator;
 import com.musicplanet.services.Email.IEmailService;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class UserRegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final IEmailService emailSender;
+    private final RoleRepository roleRepository;
 
     public String register(UserRegistrationRequest userRegistrationRequest) {
         boolean isValidEmail = emailValidator.test(userRegistrationRequest.getEmail());
@@ -32,8 +34,8 @@ public class UserRegistrationService {
                 new User(
                         userRegistrationRequest.getUsername(),
                         userRegistrationRequest.getEmail(),
-                        userRegistrationRequest.getPassword(),
-                        UserRole.USER
+                        userRegistrationRequest.getPassword()
+                        //,roleRepository.findByName("USER")
                 )
         );
 
