@@ -24,9 +24,6 @@ public class musicplanet_backend {
 
             System.out.println(roleRepository.findById(2l).getName());
 
-            Role role = new Role("test");
-
-
             //Admin
             userService.register(
                     new User(

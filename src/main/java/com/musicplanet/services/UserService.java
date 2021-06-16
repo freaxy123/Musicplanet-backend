@@ -15,6 +15,7 @@ import com.musicplanet.entities.User.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -80,4 +81,6 @@ public class UserService implements UserDetailsService {
        user.getRoles().add(role);
        userRepository.save(user);
     }
+
+    public List<User> getAll(){return userRepository.getAll();}
 }

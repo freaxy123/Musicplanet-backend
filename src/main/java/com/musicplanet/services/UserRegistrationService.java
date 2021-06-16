@@ -34,8 +34,8 @@ public class UserRegistrationService {
                 new User(
                         userRegistrationRequest.getUsername(),
                         userRegistrationRequest.getEmail(),
-                        userRegistrationRequest.getPassword()
-                        //,roleRepository.findByName("USER")
+                        userRegistrationRequest.getPassword(),
+                        roleRepository.findByName("USER")
                 )
         );
 

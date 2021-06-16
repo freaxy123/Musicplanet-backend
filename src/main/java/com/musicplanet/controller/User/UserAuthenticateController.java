@@ -1,4 +1,4 @@
-package com.musicplanet.controller;
+package com.musicplanet.controller.User;
 
 
 import com.musicplanet.entities.Authentication.UserAuthenticationRequest;
