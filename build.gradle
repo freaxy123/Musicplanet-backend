@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id "jacoco"
     id "org.sonarqube" version "2.7.1"
+    id 'com.palantir.docker' version '0.22.1'
 }
 
 group = 'com.musicplanet'
@@ -18,6 +19,13 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+docker {
+    name "musicplanet"
+    dockerfile file('Dockerfile')
+    copySpec.from(jar).rename(".*","app.jar")
+    buildArgs(['JAR_FILE': "app.jar"])
 }
 
 jacocoTestReport{
