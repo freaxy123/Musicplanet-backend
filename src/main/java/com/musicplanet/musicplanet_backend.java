@@ -4,7 +4,7 @@ import com.musicplanet.entities.User.Role;
 import com.musicplanet.entities.User.User;
 import com.musicplanet.repository.Role.RoleRepository;
 import com.musicplanet.repository.User.UserRepository;
-import com.musicplanet.services.UserService;
+import com.musicplanet.services.User.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

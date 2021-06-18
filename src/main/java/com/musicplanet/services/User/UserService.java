@@ -1,10 +1,12 @@
-package com.musicplanet.services;
+package com.musicplanet.services.User;
 
+import com.musicplanet.entities.Artist;
 import com.musicplanet.entities.Authentication.ConfirmationToken;
 import com.musicplanet.entities.Song;
 import com.musicplanet.entities.User.Role;
 import com.musicplanet.repository.User.UserRepository;
 
+import com.musicplanet.services.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -83,4 +85,8 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> getAll(){return userRepository.getAll();}
+
+    public Optional<User> getById(Long id){return userRepository.getById(id);}
+
+    public void save(User user){userRepository.save(user);}
 }

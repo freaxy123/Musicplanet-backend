@@ -1,5 +1,6 @@
 package com.musicplanet.entities.User;
 
+import com.musicplanet.dto.RoleDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,11 @@ public class Role {
 
     public Role(Long id) {
         this.id = id;
+    }
+
+    public Role(RoleDTO roleDTO) {
+        this.id = roleDTO.getId();
+        this.name = roleDTO.getName();
     }
 
     public Role() {

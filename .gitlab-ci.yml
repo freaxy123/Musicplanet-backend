@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - sonarqube-check
 
 build:
   stage: build
@@ -28,5 +29,5 @@ sonarqube-check:
       - .sonar/cache
   script: ./gradlew sonarqube
   allow_failure: true
-  only:
-    - master #Run only master branch
+  #only:
+  #  - master #Run only master branch

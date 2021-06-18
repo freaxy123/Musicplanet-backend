@@ -1,6 +1,6 @@
 package com.musicplanet.filters;
 
-import com.musicplanet.services.UserService;
+import com.musicplanet.services.User.UserService;
 import com.musicplanet.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

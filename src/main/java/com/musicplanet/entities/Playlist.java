@@ -28,6 +28,9 @@ public class Playlist {
     @JoinColumn(name = "song_id")
     private List<Song> songs;
 
+    @OneToOne
+    private Long userId;
+
     public Playlist(PlaylistDTO playlistDTO){
         this.id = playlistDTO.getId();
         this.name = playlistDTO.getName();

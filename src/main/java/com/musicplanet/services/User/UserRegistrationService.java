@@ -1,12 +1,13 @@
-package com.musicplanet.services;
+package com.musicplanet.services.User;
 
 import com.musicplanet.entities.Authentication.ConfirmationToken;
 import com.musicplanet.entities.Authentication.UserRegistrationRequest;
 import com.musicplanet.entities.User.User;
-import com.musicplanet.entities.User.UserRole;
 import com.musicplanet.repository.Role.RoleRepository;
+import com.musicplanet.services.ConfirmationTokenService;
 import com.musicplanet.services.Email.EmailValidator;
 import com.musicplanet.services.Email.IEmailService;
+import com.musicplanet.services.User.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

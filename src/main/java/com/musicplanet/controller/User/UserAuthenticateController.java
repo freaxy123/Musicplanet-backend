@@ -3,7 +3,7 @@ package com.musicplanet.controller.User;
 
 import com.musicplanet.entities.Authentication.UserAuthenticationRequest;
 import com.musicplanet.entities.Authentication.UserAuthenticationResponse;
-import com.musicplanet.services.UserService;
+import com.musicplanet.services.User.UserService;
 import com.musicplanet.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

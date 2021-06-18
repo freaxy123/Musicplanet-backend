@@ -1,7 +1,7 @@
 package com.musicplanet.security.Config;
 
 import com.musicplanet.filters.JwtRequestFilter;
-import com.musicplanet.services.UserService;
+import com.musicplanet.services.User.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
