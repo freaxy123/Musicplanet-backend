@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - sonarqube-check
+  - build_image
 
 build:
   stage: build
@@ -9,13 +10,10 @@ build:
     - ./gradlew assemble
   timeout: 3 hours 30 minutes
 
-test:
-  stage: test
+build_image:
   script:
-    - ./gradlew test
-  dependencies:
-    - build
-  timeout: 3h 30m
+    - docker build --build-arg JAR_FILE=build/libs/MusicPlanet_API-1.0-SNAPSHOT.jar -t musicplanet_deploy .
+    - docker run musicplanet_deploy
 
 sonarqube-check:
   stage: sonarqube-check
@@ -29,5 +27,11 @@ sonarqube-check:
       - .sonar/cache
   script: ./gradlew sonarqube
   allow_failure: true
-  #only:
-  #  - master #Run only master branch
+
+test:
+  stage: test
+  script:
+    - ./gradlew test
+  dependencies:
+    - build
+  timeout: 3h 30m
