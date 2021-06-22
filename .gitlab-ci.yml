@@ -14,6 +14,8 @@ build_image:
   stage: build_image
   script:
     - ./gradlew assemble
+    - docker stop musicplanet_deploy
+    - docker rm musicplanet_deploy
     - docker build --build-arg JAR_FILE=build/libs/MusicPlanet_API-1.0-SNAPSHOT.jar -t musicplanet_deploy .
     - docker run -d -p 8080:8080 musicplanet_deploy
 
