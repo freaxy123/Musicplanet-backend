@@ -68,6 +68,7 @@ public class PlaylistController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @CrossOrigin
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){

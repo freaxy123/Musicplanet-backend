@@ -2,6 +2,7 @@ package com.musicplanet.entities;
 
 import com.musicplanet.dto.PlaylistDTO;
 import com.musicplanet.dto.SongDTO;
+import com.musicplanet.entities.User.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,10 +29,11 @@ public class Playlist {
     @JoinColumn(name = "song_id")
     private List<Song> songs;
 
-    /*
-    @OneToOne
-    private Long userId;
-    */
+
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 
     public Playlist(PlaylistDTO playlistDTO){

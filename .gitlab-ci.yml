@@ -11,9 +11,10 @@ build:
   timeout: 3 hours 30 minutes
 
 build_image:
+  stage: build_image
   script:
     - docker build --build-arg JAR_FILE=build/libs/MusicPlanet_API-1.0-SNAPSHOT.jar -t musicplanet_deploy .
-    - docker run musicplanet_deploy
+    - docker run -d musicplanet_deploy
 
 sonarqube-check:
   stage: sonarqube-check
