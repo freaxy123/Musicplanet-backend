@@ -15,7 +15,7 @@ build_image:
   script:
     - ./gradlew assemble
     - docker build --build-arg JAR_FILE=build/libs/MusicPlanet_API-1.0-SNAPSHOT.jar -t musicplanet_deploy .
-    - docker run -d musicplanet_deploy
+    - docker run -p 80:80 -d musicplanet_deploy
 
 sonarqube-check:
   stage: sonarqube-check
