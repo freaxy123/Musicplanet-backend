@@ -22,7 +22,9 @@ public class musicplanet_backend {
             roleRepository.save(new Role(1L,"USER"));
             roleRepository.save(new Role(2L, "ADMIN"));
 
+            /*
             System.out.println(roleRepository.findById(2l).getName());
+
 
             //Admin
             userService.register(
@@ -44,7 +46,8 @@ public class musicplanet_backend {
                             ,roleRepository.findByName("USER")
                     ));
             userService.enableUser("freek.vlier@gmail.com");
-        };
+            */
 
+        };
     }
 }
