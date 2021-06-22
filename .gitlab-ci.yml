@@ -13,8 +13,8 @@ build:
 build_image:
   stage: build_image
   script:
-    - docker build --build-arg JAR_FILE=build/libs/MusicPlanet_API-1.0-SNAPSHOT.jar -t musicplanet_deploy .
-    - docker run -d musicplanet_deploy
+    - docker build --build-arg JAR_FILE=build/libs/\*.jar -t springio/gs-spring-boot-docker .
+    - docker run -d -p 8080:8080 springio/gs-spring-boot-docker
 
 sonarqube-check:
   stage: sonarqube-check
