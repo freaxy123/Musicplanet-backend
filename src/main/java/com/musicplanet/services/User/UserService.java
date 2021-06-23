@@ -88,5 +88,7 @@ public class UserService implements UserDetailsService {
 
     public Optional<User> getById(Long id){return userRepository.getById(id);}
 
+    public Optional<User> getByUsername(String username){return userRepository.getByUsername(username);}
+
     public void save(User user){userRepository.save(user);}
 }

@@ -19,7 +19,7 @@ public class musicplanet_backend {
     @Bean
     public CommandLineRunner ApplicationData(UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
         return args -> {
-            /*
+
             roleRepository.save(new Role(1L,"USER"));
             roleRepository.save(new Role(2L, "ADMIN"));
 
@@ -32,7 +32,7 @@ public class musicplanet_backend {
                     new User(
                             "admin",
                             "Admin@Admin",
-                            "root"
+                            "admin"
                             ,roleRepository.findByName("USER")
                     ));
             userService.enableUser("Admin@Admin");
@@ -41,13 +41,13 @@ public class musicplanet_backend {
             //User
             userService.register(
                     new User(
-                            "freek",
-                            "freek.vlier@gmail.com",
+                            "user",
+                            "user@gmail.com",
                             "password"
                             ,roleRepository.findByName("USER")
                     ));
-            userService.enableUser("freek.vlier@gmail.com");
-            */
+            userService.enableUser("user@gmail.com");
+
 
         };
     }

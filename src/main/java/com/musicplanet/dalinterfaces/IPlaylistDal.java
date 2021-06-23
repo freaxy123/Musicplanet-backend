@@ -18,4 +18,7 @@ public interface IPlaylistDal {
     void deleteAll();
 
     void save(Playlist playlist);
+
+    List<Playlist> findByUserId(Long id);
+    List<Playlist> findByUsername(String username);
 }

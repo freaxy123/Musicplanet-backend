@@ -21,6 +21,8 @@ public class PlaylistService {
     public List<Playlist> getAll(){return playlistRepository.getAll();}
     public void save(Playlist playlist){playlistRepository.save(playlist);}
     public Optional<Playlist> getById(Long id){return playlistRepository.findById(id);}
+    public List<Playlist> getByUserId(Long id){return playlistRepository.findByUserId(id);}
+    public List<Playlist> getByUsername(String username){return playlistRepository.findByUsername(username);}
     public List<Playlist> GetByName(String name){return playlistRepository.findByNameContaining(name);}
     public void delete(Long id){playlistRepository.deleteById(id);}
     public void deleteAll(){playlistRepository.deleteAll();}

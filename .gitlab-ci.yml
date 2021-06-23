@@ -22,14 +22,7 @@ build_image:
 sonarqube-check:
   stage: sonarqube-check
   image: gradle:jre11-slim
-  variables:
-    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
-  #    GIT_DEPTH: "0"
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script: ./gradlew sonarqube
+  script: gradlew sonarqube -Dsonar.login=ba1579352b36ba1b63bb2cbd9a98e250cd38fd94 -Dsonar.projectKey=MusicPlanet_API -Dsonar.host.url=http://localhost:9000
   allow_failure: true
 
 test:

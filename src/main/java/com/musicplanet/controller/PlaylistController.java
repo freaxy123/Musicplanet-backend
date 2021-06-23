@@ -1,16 +1,21 @@
 package com.musicplanet.controller;
 
 import com.musicplanet.dto.PlaylistDTO;
+import com.musicplanet.dto.SongDTO;
 import com.musicplanet.entities.Playlist;
+import com.musicplanet.entities.Song;
+import com.musicplanet.entities.User.User;
 import com.musicplanet.services.PlaylistService;
+import com.musicplanet.services.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import java.util.*;
 
 @CrossOrigin
 @RestController
@@ -20,6 +25,9 @@ public class PlaylistController {
     @Autowired
     private PlaylistService playlistService;
 
+    @Autowired
+    private UserService userService;
+
     @CrossOrigin
     @GetMapping("")
     public List<Playlist> getAll(){
@@ -28,10 +36,55 @@ public class PlaylistController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Playlist>> get(@PathVariable Long id){
+    public ResponseEntity<PlaylistDTO> get(@PathVariable Long id){
+
         try{
             Optional<Playlist> playlist = playlistService.getById(id);
-            return new ResponseEntity<>(playlist, HttpStatus.OK);
+            return new ResponseEntity<>(new PlaylistDTO(playlist.get()), HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+
+        /*
+        System.out.println("IOASMFIAMNSIFMASUIFNUI" + id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+        */
+
+    }
+
+    @CrossOrigin
+    @GetMapping("/userid/{id}")
+    public ResponseEntity<List<PlaylistDTO>> getByUserId(@PathVariable Long id){
+        try{
+            List<Playlist> playlist = playlistService.getByUserId(id);
+
+            List<PlaylistDTO> playlists = new ArrayList<>();
+
+            for (Playlist loop: playlist) {
+                playlists.add(new PlaylistDTO(loop));
+            }
+            return new ResponseEntity<>(playlists, HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/username/{username}")
+    public ResponseEntity<List<PlaylistDTO>> getByUsername(@PathVariable String username){
+        try{
+            System.out.println("Username: " + username);
+            List<Playlist> playlist = playlistService.getByUsername(username);
+
+            List<PlaylistDTO> playlists = new ArrayList<>();
+
+            for (Playlist loop: playlist) {
+                playlists.add(new PlaylistDTO(loop));
+            }
+
+
+            return new ResponseEntity<>(playlists, HttpStatus.OK);
         } catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -46,8 +99,20 @@ public class PlaylistController {
     @CrossOrigin
     @PostMapping("/")
     public void add(@RequestBody PlaylistDTO playlistDTO){
-        Playlist playlist = new Playlist(playlistDTO);
-        playlistService.save(playlist);
+
+        Playlist playlist = new Playlist();
+        playlist.setId(playlistDTO.getId());
+        playlist.setName(playlistDTO.getName());
+
+        List<Song> songs = new ArrayList<>();
+        for (SongDTO songDTO : playlistDTO.getSongs()) {
+            songs.add(new Song(songDTO));
+        }
+        playlist.setSongs(songs);
+
+        User user = userService.getByUsername(playlistDTO.getUsername()).get();
+        playlist.setUser(user);
+                playlistService.save(playlist);
     }
 
     @CrossOrigin
@@ -62,6 +127,7 @@ public class PlaylistController {
 
             playlistDTO.setId(id);
             Playlist playlist = new Playlist(playlistDTO);
+            playlist.setUser(userService.getByUsername(playlistDTO.getUsername()).get());
             playlistService.save(playlist);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e){

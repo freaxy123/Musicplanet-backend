@@ -14,9 +14,20 @@ public class PlaylistRepository implements IPlaylistDal {
     @Autowired
     IPlaylistRepository repository;
 
+    @Override
     public Optional<Playlist> findById(Long id) {
         return repository.findById(id);
     }
+
+    @Override
+    public List<Playlist> findByUserId(Long id) {
+        return repository.findPlaylistByUser_Id(id);
+    }
+    @Override
+    public List<Playlist> findByUsername(String username) {
+        return repository.findPlaylistByUser_username(username);
+    }
+
 
     @Override
     public List<Playlist> getAll() {
