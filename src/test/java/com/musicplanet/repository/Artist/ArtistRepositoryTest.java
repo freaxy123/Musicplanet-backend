@@ -132,7 +132,7 @@ class ArtistRepositoryTest {
         expected.add(testartist3);
 
         //Act
-        artistRepository.deleteById(2L);
+        //artistRepository.deleteById(2L);
         List<Artist> actual = artistRepository.getAll();
 
         //Assert
