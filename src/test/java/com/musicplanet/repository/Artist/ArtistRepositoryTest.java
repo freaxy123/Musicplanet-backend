@@ -124,13 +124,15 @@ class ArtistRepositoryTest {
         testartist3.setName("TestArtist3");
 
         artistRepository.save(testartist);
+        artistRepository.save(testartist2);
+        artistRepository.save(testartist3);
 
         List<Artist> expected = new ArrayList<>();
         expected.add(testartist);
         expected.add(testartist3);
 
         //Act
-        artistRepository.deleteById(1L);
+        artistRepository.deleteById(2L);
         List<Artist> actual = artistRepository.getAll();
 
         //Assert
