@@ -1,5 +1,9 @@
 package com.musicplanet.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.musicplanet.dto.ArtistDTO;
+import com.musicplanet.entities.Artist;
 import com.musicplanet.services.ArtistService;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -36,42 +41,46 @@ class ArtistControllerTest {
     @MockBean
     private ArtistService artistService;
 
+    @WithMockUser(value = "spring")
+    @Test
+    void add() throws Exception {
+        ArtistDTO artist = new ArtistDTO();
+        artist.setId(1L);
+        artist.setName("Testartist");
+
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(artist);
+
+        mvc.perform(post("/artists/")
+                .contentType("application/json")
+                .content(json))
+                .andExpect(status().isOk());
+    }
+
+    @WithMockUser(value = "spring")
     @Test
     void getAll() throws Exception {
         /*
-       post("/artists").content("Artist");
-
         RequestBuilder request = MockMvcRequestBuilders.get("/artists");
         MvcResult result = mvc.perform(request).andReturn();
         assertEquals("", result.getResponse().getContentAsString());
 
-
-        //mvc.get("/admin").with(user("admin").password("pass").roles("USER","ADMIN"));
-
-        mvc.perform(get());
-
          */
 
+        mvc.perform(MockMvcRequestBuilders.get("/artists/"))
+                .andExpect(status().isOk());
     }
 
+    @WithMockUser(value = "spring")
     @Test
-    void get() {
+    void get() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/artists/1"))
+                .andExpect(status().isOk());
     }
 
+    @WithMockUser(value = "spring")
     @Test
     void getByName() {
-    }
-
-    @Test
-    void add() throws Exception {
-        /*
-        mvc.perform(post("/forums/{forumId}/register", 42L)
-                .contentType("application/json")
-                .param("sendWelcomeMail", "true")
-                .content(objectMapper.writeValueAsString(user)))
-                .andExpect(status().isOk());
-
-         */
     }
 
     @Test

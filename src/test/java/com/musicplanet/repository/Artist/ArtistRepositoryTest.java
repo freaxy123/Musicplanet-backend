@@ -102,7 +102,7 @@ class ArtistRepositoryTest {
         List<Artist> actual = artistRepository.findByNameContaining("name");
 
         //Assert
-        assertThat(expected.equals(actual)).isTrue();
+        assertThat(actual.equals(expected)).isTrue();
     }
 
     @Test
@@ -121,19 +121,17 @@ class ArtistRepositoryTest {
         testartist3.setName("TestArtist3");
 
         artistRepository.save(testartist);
-        artistRepository.save(testartist2);
-        artistRepository.save(testartist3);
 
         List<Artist> expected = new ArrayList<>();
         expected.add(testartist);
         expected.add(testartist3);
 
         //Act
-        artistRepository.deleteById(2L);
+        artistRepository.deleteById(1L);
         List<Artist> actual = artistRepository.getAll();
 
         //Assert
-        assertThat(expected.equals(actual)).isTrue();
+        assertThat(actual.isEmpty()).isTrue();
     }
 
     @Test
@@ -169,7 +167,7 @@ class ArtistRepositoryTest {
         Artist testartist = new Artist();
         testartist.setId(1L);
         testartist.setName("TestArtist");
-        
+
         //Act
         artistRepository.save(testartist);
         List<Artist> actual = artistRepository.getAll();
