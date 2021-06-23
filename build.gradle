@@ -40,6 +40,7 @@ jacocoTestReport{
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -64,8 +65,13 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
     testImplementation 'junit:junit:4.13'
 
-    // https://mvnrepository.com/artifact/org.hsqldb/hsqldb
-    testImplementation group: 'org.hsqldb', name: 'hsqldb', version: '2.0.0'
+// https://mvnrepository.com/artifact/com.h2database/h2
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.197'
+
+// https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
+    testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.7.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation"org.assertj:assertj-core:3.11.1"
 
 
 

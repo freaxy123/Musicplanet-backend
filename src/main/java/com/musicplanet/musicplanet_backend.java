@@ -19,10 +19,11 @@ public class musicplanet_backend {
     @Bean
     public CommandLineRunner ApplicationData(UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
         return args -> {
+            /*
             roleRepository.save(new Role(1L,"USER"));
             roleRepository.save(new Role(2L, "ADMIN"));
 
-            /*
+
             System.out.println(roleRepository.findById(2l).getName());
 
 

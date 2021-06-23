@@ -3,6 +3,7 @@ package com.musicplanet.services;
 import com.musicplanet.entities.Artist;
 import com.musicplanet.repository.Artist.ArtistRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 @AllArgsConstructor
 public class ArtistService {
 
