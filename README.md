@@ -1,6 +1,6 @@
 # MusicPlanet Backend
 
-MusicPlanet is een project ontwikkeld als onderdeel van semester 3 (2021) van de Software Engineering studie aan Fontys Hogescholen Eindhoven. Het project omvat zowel een front-end gebouwd met het JavaScript framework Vue.js als een backend met een API en database. Hieronder vind je de context en technische details van het backend project.
+MusicPlanet is een project ontwikkeld als onderdeel van semester 3 (2021) van de Software Engineering studie aan Fontys Hogescholen Eindhoven. Het project omvat zowel een front-end gebouwd met het JavaScript framework Vue.js als een backend met een API en database. Hieronder vind je de context en technische details van het backend project. De frontend repository is [hier](https://github.com/freekvlier/Musicplanet-frontend) te vinden.
 
 ## Projectomschrijving
 MusicPlanet is een systeem voor het beheren van muziekcollecties waar gebruikers afspeellijsten kunnen maken en andere muziekcontent kunnen verkennen. Gebruikers moeten een account aanmaken om de applicatie te gebruiken. Na het inloggen kan de gebruiker een overzicht van alle nummers op het platform zien en zijn eigen afspeellijsten maken door nummers toe te voegen.
